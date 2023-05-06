@@ -69,7 +69,9 @@
     </ul>
   </nav>
 
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style lang="scss" scoped>
@@ -156,6 +158,11 @@
     }
   }
 
+  main {
+    background-color: #F4F4F4;
+    padding: 32px;
+  }
+
   @media screen and (min-width: 426px) {
     nav {
       display: block;
@@ -181,6 +188,10 @@
           display: none;
         }
       }
+    }
+
+    main {
+      padding: 64px;
     }
   }
 </style>
