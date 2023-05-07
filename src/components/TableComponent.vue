@@ -41,6 +41,7 @@
     border-spacing: 0;
     overflow: hidden;
     max-width: 1024px;
+    min-width: calc(256px + 64px);
 
     th, td {
       padding: 16px;
