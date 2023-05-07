@@ -164,7 +164,7 @@
     width: -webkit-fill-available;
   }
 
-  @media screen and (min-width: 426px) {
+  @media screen and (min-width: 675px) {
     nav {
       display: block;
       padding: 64px 32px;
