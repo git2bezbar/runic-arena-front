@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Modification de carte</h1>
+    <h1>Modification de capacité</h1>
     <InputComponent
       name="name"
       label="Nom"
