@@ -13,6 +13,7 @@ import ClassesView from '../views/ClassesView.vue'
 import ClassView from '../views/ClassView.vue'
 import ClassUpsert from '../views/ClassUpsert.vue'
 import TypesView from '../views/TypesView.vue'
+import TypeView from '../views/TypeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -85,6 +86,11 @@ const router = createRouter({
       path: '/types',
       name: 'types',
       component: TypesView
+    },
+    {
+      path: '/types/:id',
+      name: 'type',
+      component: TypeView
     },
   ]
 })
