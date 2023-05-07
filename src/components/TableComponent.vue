@@ -50,6 +50,7 @@
       background-color: #1400FF;
       color: white;
       text-align: left;
+      padding-right: 128px;
     }
 
     tbody {
