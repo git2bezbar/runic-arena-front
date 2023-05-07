@@ -11,6 +11,10 @@ import PowerIcon from './components/icons/PowerIcon.vue'
 import StopIcon from './components/icons/StopIcon.vue'
 import HeartIcon from './components/icons/HeartIcon.vue'
 import MadnessIcon from './components/icons/MadnessIcon.vue'
+import ShuffleIcon from './components/icons/ShuffleIcon.vue'
+import ArrowIcon from './components/icons/ArrowIcon.vue'
+import InputComponent from './components/InputComponent.vue'
+import ListComponent from './components/ListComponent.vue'
 import router from './router'
 
 import './assets/main.css'
@@ -30,4 +34,8 @@ app
   .component('StopIcon', StopIcon)
   .component('HeartIcon', HeartIcon)
   .component('MadnessIcon', MadnessIcon)
+  .component('ShuffleIcon', ShuffleIcon)
+  .component('ArrowIcon', ArrowIcon)
+  .component('InputComponent', InputComponent)
+  .component('ListComponent', ListComponent)
   .mount('#app')
