@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import CardsView from '../views/CardsView.vue'
 import CardView from '../views/CardView.vue'
 import CardUpsert from '../views/CardUpsert.vue'
+import AbilitiesView from '../views/AbilitiesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,7 +30,7 @@ const router = createRouter({
     {
       path: '/abilities',
       name: 'abilities',
-      component: HomeView
+      component: AbilitiesView
     },
     {
       path: '/skills',
