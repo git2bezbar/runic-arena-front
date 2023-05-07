@@ -15,6 +15,7 @@ import ShuffleIcon from './components/icons/ShuffleIcon.vue'
 import ArrowIcon from './components/icons/ArrowIcon.vue'
 import InputComponent from './components/InputComponent.vue'
 import ListComponent from './components/ListComponent.vue'
+import TableComponent from './components/TableComponent.vue'
 import router from './router'
 
 import './assets/main.css'
@@ -38,4 +39,5 @@ app
   .component('ArrowIcon', ArrowIcon)
   .component('InputComponent', InputComponent)
   .component('ListComponent', ListComponent)
+  .component('TableComponent', TableComponent)
   .mount('#app')
