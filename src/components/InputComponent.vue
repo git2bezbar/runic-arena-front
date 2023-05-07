@@ -1,5 +1,5 @@
 <template>
-  <div class="input">
+  <div class="input" :class="disabled && 'disabled'">
     <div class="input-label">{{this.label}}</div>
     <label
       class="input-field"
@@ -19,6 +19,7 @@
         :class="this.type === 'file' && 'button'"
         :min="this.type === 'number' && '1'"
         :max="this.type === 'number' && '100'"
+        :disabled="this.disabled"
         @change="onUpload"
       >
       <component class="input-icon" v-if="this.icon" :is="this.icon" />
@@ -47,6 +48,9 @@
       },
       value: {
         type: String,
+      },
+      disabled: {
+        type: Boolean,
       }
     },
     data() {
@@ -79,6 +83,11 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
     &-label {
       font-weight: 800;
