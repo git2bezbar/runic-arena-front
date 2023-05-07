@@ -71,8 +71,8 @@
 
 <style lang="scss" scoped>
   .card {
-    width: 250px;
-    height: 350px;
+    width: 165px;
+    height: 250px;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -131,5 +131,12 @@
       color: #808080;
     }
 
+  }
+  
+  @media screen and (min-width: 675px) {
+    .card {
+      width: 250px;
+      height: 350px;
+    }
   }
 </style>
