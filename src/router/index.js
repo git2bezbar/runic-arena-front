@@ -50,7 +50,7 @@ const router = createRouter({
     },
     {
       path: '/abilities/:id/edit',
-      name: 'ability',
+      name: 'ability-edit',
       component: AbilityUpsert
     },
     {
@@ -80,7 +80,7 @@ const router = createRouter({
     },
     {
       path: '/classes/:id/edit',
-      name: 'class',
+      name: 'class-edit',
       component: ClassUpsert
     },
     {
