@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
+import AbilityIcon from './components/icons/AbilityIcon.vue'
 import ChaosIcon from './components/icons/types/ChaosIcon.vue'
 import WarriorIcon from './components/icons/classes/WarriorIcon.vue'
 import EditIcon from './components/icons/EditIcon.vue'
@@ -13,6 +14,7 @@ import HeartIcon from './components/icons/HeartIcon.vue'
 import MadnessIcon from './components/icons/MadnessIcon.vue'
 import ShuffleIcon from './components/icons/ShuffleIcon.vue'
 import ArrowIcon from './components/icons/ArrowIcon.vue'
+import QuantityIcon from './components/icons/QuantityIcon.vue'
 import InputComponent from './components/InputComponent.vue'
 import ListComponent from './components/ListComponent.vue'
 import TableComponent from './components/TableComponent.vue'
@@ -26,6 +28,7 @@ app.use(createPinia())
 app.use(router)
 
 app
+  .component('AbilityIcon', AbilityIcon)
   .component('ChaosIcon', ChaosIcon)
   .component('WarriorIcon', WarriorIcon)
   .component('EditIcon', EditIcon)
@@ -37,6 +40,7 @@ app
   .component('MadnessIcon', MadnessIcon)
   .component('ShuffleIcon', ShuffleIcon)
   .component('ArrowIcon', ArrowIcon)
+  .component('QuantityIcon', QuantityIcon)
   .component('InputComponent', InputComponent)
   .component('ListComponent', ListComponent)
   .component('TableComponent', TableComponent)
