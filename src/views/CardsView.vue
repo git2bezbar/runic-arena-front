@@ -92,8 +92,16 @@
 
     .cards-container {
       display: flex;
-      gap: 48px;
+      gap: 16px;
       flex-wrap: wrap;
+    }
+  }
+
+  @media screen and (min-width: 675px) {
+    .container {
+      .cards-container {
+        gap: 48px;
+      }
     }
   }
 </style>
