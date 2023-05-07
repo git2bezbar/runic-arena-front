@@ -11,6 +11,7 @@ import SkillView from '../views/SkillView.vue'
 import SkillUpsert from '../views/SkillUpsert.vue'
 import ClassesView from '../views/ClassesView.vue'
 import ClassView from '../views/ClassView.vue'
+import ClassUpsert from '../views/ClassUpsert.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,6 +74,11 @@ const router = createRouter({
       path: '/classes/:id',
       name: 'class',
       component: ClassView
+    },
+    {
+      path: '/classes/:id/edit',
+      name: 'class',
+      component: ClassUpsert
     },
     {
       path: '/types',
