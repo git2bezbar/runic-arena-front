@@ -159,8 +159,9 @@
   }
 
   main {
-    background-color: #F4F4F4;
+    background-color: #F9F9F9;
     padding: 32px;
+    width: -webkit-fill-available;
   }
 
   @media screen and (min-width: 426px) {
@@ -170,6 +171,8 @@
       
       .logo {
         display: block;
+        height: 76px;
+        width: auto;
       }
       .logo-min {
         display: none;
