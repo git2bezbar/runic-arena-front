@@ -8,7 +8,7 @@
   <div class="container">
       <h1>Informations de carte</h1>
       <div class="card">
-        <div class="card-img" :style="'background: center center / cover url(\'../src/assets/images/' + this.$route.params.id + '.jpg\')'"></div>
+        <div class="card-img" :style="'background: center center / cover url(\'../../src/assets/images/' + this.$route.params.id + '.jpg\')'"></div>
         <div class="card-info">
           <header>
             <div class="card-titles">
