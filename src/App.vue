@@ -190,6 +190,10 @@
         li:first-of-type {
           display: none;
         }
+
+        li {
+          width: 100%;
+        }
       }
     }
 
