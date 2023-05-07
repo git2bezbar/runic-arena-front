@@ -7,6 +7,7 @@ import AbilitiesView from '../views/AbilitiesView.vue'
 import AbilityView from '../views/AbilityView.vue'
 import AbilityUpsert from '../views/AbilityUpsert.vue'
 import SkillsView from '../views/SkillsView.vue'
+import SkillView from '../views/SkillView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,11 @@ const router = createRouter({
       path: '/skills',
       name: 'skills',
       component: SkillsView
+    },
+    {
+      path: '/skills/:id',
+      name: 'skill',
+      component: SkillView
     },
     {
       path: '/classes',
