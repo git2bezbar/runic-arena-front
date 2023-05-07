@@ -1,0 +1,19 @@
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+    <path
+      d="M9.63637 13.0909H5.31818L11.3636 1V7.90909H15.6818L9.63637 20V13.0909Z"
+      :fill="'#' + color"
+    />
+  </svg>
+</template>
+
+<script>
+  export default {
+    props: {
+      color: {
+        type: String,
+        default: '1400FF',
+      }
+    }
+  }
+</script>
