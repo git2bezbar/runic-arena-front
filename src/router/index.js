@@ -6,6 +6,7 @@ import CardUpsert from '../views/CardUpsert.vue'
 import AbilitiesView from '../views/AbilitiesView.vue'
 import AbilityView from '../views/AbilityView.vue'
 import AbilityUpsert from '../views/AbilityUpsert.vue'
+import SkillsView from '../views/SkillsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,7 +48,7 @@ const router = createRouter({
     {
       path: '/skills',
       name: 'skills',
-      component: HomeView
+      component: SkillsView
     },
     {
       path: '/classes',
