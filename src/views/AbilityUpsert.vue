@@ -4,24 +4,24 @@
     <InputComponent
       name="name"
       label="Nom"
-      placeholder="Entrez le nom de votre carte"
+      placeholder="Nom de votre carte"
     />
     <ListComponent
       name="type"
       label="Type"
-      placeholder="Choisissez le type de capacité (compétence) de votre carte"
+      placeholder="Type de capacité de votre carte"
       :list="typeArray"
     />
     <InputComponent
       name="desc"
       label="Description"
-      placeholder="La description de votre carte dépend du type de capacité"
+      placeholder="Description de votre carte"
       disabled
     />
     <InputComponent
       name="quantity"
       label="Quantité"
-      placeholder="Entrez la quantité de votre capacité"
+      placeholder="Quantité de votre capacité"
       type="number"
     />
 
