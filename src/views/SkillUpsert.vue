@@ -4,12 +4,12 @@
     <InputComponent
       name="name"
       label="Nom"
-      placeholder="Le nom de votre compétence"
+      placeholder="Nom de votre compétence"
     />
     <InputComponent
       name="desc"
       label="Description"
-      placeholder="La description de votre compétence"
+      placeholder="Description de votre compétence"
     />
     <ToggleComponent
       name="isPercentage"
