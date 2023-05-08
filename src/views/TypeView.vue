@@ -62,27 +62,24 @@
 
     .card {
       display: flex;
+      flex-direction: column;
       gap: 32px;
       background-color: white;
       border-radius: 15px;
       padding: 32px;
       border: 1px solid #0000001a;
-      width: 850px;
-
-      &-img {
-        width: 250px;
-        height: 250px;
-        border-radius: 15px;
-      }
-
+      
       &-info {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 32px;
         width: 100%;
 
         header {
           display: flex;
+          flex-direction: column;
+          gap: 32px;
           justify-content: space-between;
         }
       }
@@ -106,18 +103,16 @@
 
       &-buttons {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
-        gap: 32px;
+        gap: 16px;
       }
 
       &-items {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         gap: 32px;
-
-        .card-item {
-          width: 100%;
-        }
       }
 
       .button {
@@ -134,6 +129,43 @@
 
         &:hover {
           background-color: darken(#1400FF, 15%);
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .container {
+      .card {
+        &-buttons {
+          flex-direction: row;
+          gap: 32px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .container {
+      .card {
+        flex-direction: row;
+        width: 850px;
+
+        &-info {
+          align-items: normal;
+          
+
+          header {
+            flex-direction: row;
+          }
+        }
+
+        &-items {
+          flex-direction: row;
+
+          .card-item {
+            width: 100%;
+          }
         }
       }
     }
