@@ -1,18 +1,28 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th v-for="(el, i) in head" :key="i">{{ el }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(items, index) in body" :key="index" @click="navigate(index)">
-        <td v-for="(item, ind) in items" :key="ind">
-          {{ item }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th v-for="(el, i) in head" :key="i">{{ el }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(items, index) in body"
+          :key="index"
+          @click="navigate(index)"
+        >
+          <td
+            v-for="(item, ind) in items"
+            :key="ind"
+            :data-label="head[ind]"
+          >
+            {{ item }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -34,39 +44,97 @@
 </script>
 
 <style lang="scss" scoped>
-  table {
-    background-color: white;
-    border: 1px solid #0000001A;
-    border-radius: 15px;
-    border-spacing: 0;
-    overflow: hidden;
-    max-width: 1024px;
-    min-width: calc(256px + 64px);
+  .table-container {
+    overflow-x: auto;
 
-    th, td {
-      padding: 16px;
-    }
-    
-    th {
-      background-color: #1400FF;
-      color: white;
-      text-align: left;
-      padding-right: 128px;
-    }
+    table {
+      border-spacing: 0;
+      overflow: hidden;
+      max-width: 1024px;
+      min-width: calc(256px);
+      width: 100%;
+  
+      th, td {
+        padding: 16px;
+      }
+      
+      th {
+        background-color: #1400FF;
+        color: white;
+        text-align: left;
+        padding-right: 32px;
+      }
 
-    tbody {
-      tr {
-        transition: 0.3s;
-        cursor: pointer;
-              
-        &:hover {
-          background-color: #F9F9F9;
-        }
+      thead {
+        display: none;
+      }
+  
+      tbody {
+        tr {
+          transition: 0.3s;
+          cursor: pointer;
+          display: block;
+          margin-bottom: 16px;
+          border: 1px solid #0000001A;
+          background-color: white;
+          border-radius: 15px;
 
-        &:not(:last-of-type) {
+                
+          &:hover {
+            background-color: #F9F9F9;
+          }
 
           td {
-            border-bottom: 1px solid #0000001A;
+            display: block;
+            text-align: right;
+
+            &:not(:last-of-type) {
+              border-bottom: 1px solid #0000001A;
+            }
+
+
+            &::before {
+              content: attr(data-label);
+              float: left;
+              font-weight: 800;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .table-container {
+      table {
+        background-color: white;
+        border: 1px solid #0000001A;
+        border-radius: 15px;
+
+
+        thead {
+          display: table-header-group;
+        }
+        tbody {
+          tr {
+            display: table-row;
+
+            td {
+              display: table-cell;
+              text-align: left;
+              border-bottom: 1px solid #0000001A;
+
+
+              &::before {
+                content: none;
+              }
+            }
+
+            &:last-of-type {
+              td {
+                border-bottom: none;
+              }
+            }
           }
         }
       }

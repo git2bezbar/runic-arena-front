@@ -159,9 +159,8 @@
   }
 
   main {
-    background-color: #F9F9F9;
     padding: 32px;
-    width: -webkit-fill-available;
+    width: 100%;
   }
 
   @media screen and (min-width: 675px) {
