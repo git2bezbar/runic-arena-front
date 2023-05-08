@@ -112,6 +112,7 @@
       align-items: center;
       transition: 0.3s;
       transform: translateX(100%);
+      z-index: 99;
 
       list-style-type: none;
       margin: 0;
