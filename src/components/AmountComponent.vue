@@ -3,12 +3,12 @@
     <InputComponent
       class="no-width"
       type="number"
-      placeholder="Choisissez un coût"
+      placeholder="Coût"
     />
     <ListComponent
       class="no-width"
       :list="list"
-      placeholder="Choisissez une couleur"
+      placeholder="Couleur"
       name="colors"
     />
     <button @click="deleteAmount">
@@ -37,6 +37,34 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  .active-amount-item {
 
+    .no-width {
+      gap: 0px;
+      width: 100%;
+
+      .input-field, .list-field {
+        width: 100%;
+      }
+    }
+
+    button {
+      background-color: var(--blue);
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: none;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: darken(#1400FF, 15%);
+      }
+    }
+  }
 </style>

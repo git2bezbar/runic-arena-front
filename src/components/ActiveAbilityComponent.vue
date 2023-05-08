@@ -96,7 +96,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 16px;
-    width: min-content;
+    width: 100%;
 
     &-title {
       font-weight: 800;
@@ -112,38 +112,14 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 16px
-      ;
+      gap: 16px;
+
       &-item {
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 16px;
-
-        .no-width {
-          gap: 0px;
-
-          .input-field, .list-field {
-            width: 205px;
-          }
-        }
-
-        button {
-          background-color: var(--blue);
-          padding: 12px;
-          border-radius: 10px;
-          color: white;
-          text-decoration: none;
-          font-weight: bold;
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          border: none;
-          transition: 0.3s;
-
-          &:hover {
-            background-color: darken(#1400FF, 15%);
-          }
-        }
+        width: 100%;
       }
     }
 
@@ -165,6 +141,19 @@
 
       &:hover {
         background-color: darken(#1400FF, 15%);
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .active {
+      width: min-content;
+
+      &-amount {
+        &-item {
+          flex-direction: row;
+          align-items: center;
+        }
       }
     }
   }
