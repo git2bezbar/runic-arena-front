@@ -70,6 +70,7 @@
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+    width: 100%;
 
     &-label {
       font-weight: 800;
@@ -84,12 +85,22 @@
       flex-direction: column;
       justify-content: flex-start;
       gap: 16px;
-      width: min-content;
+      width: 100%;
     }
 
     &-subtitle {
       font-weight: 800;
       font-size: 14px;
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .passive {
+      width: auto;
+      
+      &-ability {
+        width: min-content;
+      }
     }
   }
 </style>
