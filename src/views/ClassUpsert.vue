@@ -4,12 +4,12 @@
     <InputComponent
       name="name"
       label="Nom"
-      placeholder="Le nom de votre classe"
+      placeholder="Nom de votre classe"
     />
     <TextAreaComponent
       name="desc"
       label="Description"
-      placeholder="La description de votre classe"
+      placeholder="Description de votre classe"
     />
 
     <button class="button">

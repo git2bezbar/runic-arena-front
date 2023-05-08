@@ -40,6 +40,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 
     &-label {
       font-weight: 800;
@@ -48,7 +49,7 @@
     textarea {
       font-family: 'Raleway', sans-serif;
       resize: none;
-      width: 500px;
+      width: 100%;
       padding: 16px;
       border-radius: 10px;
       background-color: white;
@@ -56,6 +57,14 @@
 
       &:focus{
         outline: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .input {
+      textarea {
+        width: 500px;
       }
     }
   }
