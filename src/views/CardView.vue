@@ -1,14 +1,12 @@
-<script>
-
-  export default {
-  }
-</script>
-
 <template>
   <div class="container">
       <h1>Informations de carte</h1>
       <div class="card">
-        <div class="card-img" :style="'background: center center / cover url(\'../../src/assets/images/' + this.$route.params.id + '.jpg\')'"></div>
+        <div
+          class="card-img"
+          :style="'background: center center / cover url(\'../../src/assets/images/' + this.$route.params.id + '.jpg\')'"
+        >
+        </div>
         <div class="card-info">
           <header>
             <div class="card-titles">
@@ -87,8 +85,13 @@
     align-items: flex-start;
     gap: 32px;
 
+    h1 {
+      font-size: 24px;
+    }
+
     .card {
       display: flex;
+      flex-direction: column;
       gap: 32px;
       background-color: white;
       border-radius: 15px;
@@ -96,8 +99,8 @@
       border: 1px solid #0000001a;
 
       &-img {
-        width: 250px;
-        height: 250px;
+        width: 175px;
+        height: 175px;
         border-radius: 15px;
       }
 
@@ -108,6 +111,8 @@
 
         header {
           display: flex;
+          flex-direction: column;
+          gap: 32px;
           justify-content: space-between;
         }
       }
@@ -118,12 +123,12 @@
         gap: 4px;
 
         h2 {
-          font-size: 32px;
+          font-size: 24px;
           font-weight: bold;
         }
 
         p {
-          font-size: 24px;
+          font-size: 18px;
           font-weight: bold;
           color: #A0A0A0;
         }
@@ -132,12 +137,14 @@
       &-buttons {
         display: flex;
         align-items: flex-start;
-        gap: 32px;
+        flex-direction: column;
+        gap: 16px;
       }
 
       &-items {
         display: flex;
-        gap: 32px;
+        flex-direction: column;
+        gap: 16px;
       }
 
       .button {
@@ -169,7 +176,8 @@
 
       &-content {
         display: flex;
-        gap: 32px;
+        flex-direction: column;
+        gap: 16px;
       }
 
       &-info {
@@ -184,6 +192,63 @@
         p {
           font-size: 14px;
           max-width: 200px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .container {
+      h1 {
+        font-size: 32px;
+      }
+
+      .card {
+        &-items {
+          flex-direction: row;
+          gap: 32px;
+        }
+
+        &-buttons {
+          flex-direction: row;
+          gap: 32px;
+        }
+
+        &-titles {
+          h2 {
+            font-size: 32px;
+          }
+  
+          p {
+            font-size: 24px;
+          }
+        }
+      }
+
+      .active, .passive {
+        &-content {
+          gap: 32px;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .container {
+      .card {
+        flex-direction: row;
+
+        &-info {
+          header {
+            gap: 0;
+            flex-direction: row;
+          }
+        }
+
+        &-img {
+          width: 250px;
+          height: 250px;
         }
       }
     }
