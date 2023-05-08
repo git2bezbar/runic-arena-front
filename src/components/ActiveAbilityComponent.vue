@@ -80,9 +80,6 @@
     components: {
       AmountComponent
     },
-    updated() {
-      console.log(this.amounts);
-    }
   }
 </script>
 
