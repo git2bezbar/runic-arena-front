@@ -51,13 +51,14 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 
     &-label {
       font-weight: 800;
     }
 
     &-field {
-      width: 500px;
+      width: 100%;
       height: 46px;
       padding: 16px;
       border-radius: 10px;
@@ -67,6 +68,7 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
+      text-overflow: ellipsis;
 
       select {
         width: 100%;
@@ -84,6 +86,16 @@
       position: absolute;
       right: 16px;
       pointer-events: none;
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .list {
+      width: auto;
+
+      &-field {
+        width: 500px;
+      }
     }
   }
 </style>

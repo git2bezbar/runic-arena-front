@@ -5,13 +5,13 @@
       icon="ShuffleIcon"
       name="name"
       label="Nom"
-      placeholder="Entrez le nom de votre carte"
+      placeholder="Nom de votre carte"
     />
     <InputComponent
       icon="ShuffleIcon"
       name="surname"
       label="Surnom"
-      placeholder="Entrez le surnom de votre carte"
+      placeholder="Surnom de votre carte"
     />
     <InputComponent
       name="image"
@@ -21,19 +21,19 @@
     <ListComponent
       name="type"
       label="Type"
-      placeholder="Choisissez le type de votre carte"
+      placeholder="Type de votre carte"
       :list="typeArray"
     />
     <ListComponent
       name="classe"
       label="Classe"
-      placeholder="Choisissez la classe de votre carte"
+      placeholder="Classe de votre carte"
       :list="classArray"
     />
     <InputComponent
       name="power"
       label="Puissance"
-      placeholder="Entrez la puissance de votre carte"
+      placeholder="Puissance de votre carte"
       type="number"
     />
     <ActiveAbilitiesComponent

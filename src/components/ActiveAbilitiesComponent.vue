@@ -60,6 +60,7 @@
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+    width: 100%;
 
     &-label {
       font-weight: 800;
@@ -144,6 +145,12 @@
       &:hover {
         background-color: darken(#1400FF, 15%);
       }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .actives {
+      width: auto;
     }
   }
 </style>
