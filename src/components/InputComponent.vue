@@ -83,6 +83,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 
     &.disabled {
       opacity: 0.5;
@@ -105,7 +106,7 @@
     }
 
     &-field {
-      width: 500px;
+      width: 100%;
       
       &:not(.file) {
         height: 46px;
@@ -119,12 +120,13 @@
       }
       &.file {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 32px;
 
         input {
           display: flex;
-          width: min-content;
+          width: 100%;
         }
 
         input::file-selector-button {
@@ -165,6 +167,25 @@
 
       img {
         transform: scale(1.4);
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) {
+    .input {
+      width: auto;
+
+      &-field {
+        width: 500px;
+
+        &.file {
+          flex-direction: row;
+          align-items: center;
+
+          input {
+            width: min-content;
+          }
+        }
       }
     }
   }
