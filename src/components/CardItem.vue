@@ -31,9 +31,6 @@
         type: Boolean,
         default: false,
        }
-    },
-    created() {
-      console.log(this.isActive);
     }
   }
 </script>
