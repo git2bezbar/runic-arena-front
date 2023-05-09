@@ -7,6 +7,7 @@
       :rows="rows"
       :cols="cols"
       :placeholder="placeholder"
+      v-model="inputVal"
     />
   </div>
 </template>
@@ -31,7 +32,21 @@
         type: String,
         default: "32",
       },
+      value: {
+        type: String,
+        default: ''
+      },
     },
+    computed: {
+      inputVal: {
+        get() {
+          return this.value;
+        },
+        set(val) {
+          this.$emit('updateTextarea', val);
+        }
+      }
+    }
   }
 </script>
 

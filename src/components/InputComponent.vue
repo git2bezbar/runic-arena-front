@@ -21,6 +21,7 @@
         :max="this.type === 'number' && '100'"
         :disabled="this.disabled"
         @change="onUpload"
+        v-model="inputVal"
       >
       <component class="input-icon" v-if="this.icon" :is="this.icon" />
     </label>
@@ -72,6 +73,16 @@
             }
             reader.readAsDataURL(target.files[0])
           }
+        }
+      }
+    },
+    computed: {
+      inputVal: {
+        get() {
+          return this.value;
+        },
+        set(val) {
+          this.$emit('updateInput', val);
         }
       }
     }
