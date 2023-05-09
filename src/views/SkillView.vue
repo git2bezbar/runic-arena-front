@@ -14,22 +14,22 @@
               Modifier
               <EditIcon />
             </a>
-            <a :href="this.$route.path + '/delete'" class="button">
+            <button class="button" @click="deleteQuery">
               Supprimer
               <DeleteIcon />
-            </a>
+            </button>
           </div>
         </header>
         <div class="card-items">
           <CardItem
             icon="TitleIcon"
             title="Nom"
-            unit="Esquive"
+            :unit="name"
           />
           <CardItem
             icon="DescIcon"
             title="Description"
-            unit="Esquive les X prochaines attaques"
+            :unit="desc || 'Aucune description'"
           />
         </div>
       </div>
@@ -42,6 +42,37 @@
   export default {
     components: {
       SkillIcon,
+    },
+    data() {
+      return {
+        name: '',
+        desc: '',
+      }
+    },
+    async beforeMount() {
+      let data = await fetch('http://localhost:3000/skills/' + this.$route.params.id)
+        .then(response => response.json());
+      this.name = data.name;
+      this.desc = data.description;
+    },
+    methods: {
+      async deleteQuery() {
+        const requestOptions = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+        await fetch(
+          'http://localhost:3000/skills/' + this.$route.params.id,
+          requestOptions
+        ).then(response => {
+          return response.json();
+        });
+
+        let newURL = location.href.split('/');
+        newURL.pop();
+        newURL = newURL.join('/');
+        document.location = newURL;
+      }
     }
   }
 </script>
@@ -126,6 +157,9 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        font-family: 'Raleway', sans-serif;
+        border: none;
+        font-size: 16px;
         transition: 0.3s;
 
         &:hover {
