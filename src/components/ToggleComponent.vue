@@ -2,7 +2,13 @@
   <div class="toggle">
     <div class="toggle-label">{{ label }}</div>
     <label :for="name" class="toggle-input">
-      <input type="checkbox" :name="name" :id="name">
+      <input
+        type="checkbox"
+        :name="name"
+        :id="name"
+        :checked="checked"
+        v-model="inputVal"
+      >
       <p class="toggle-no">{{ no }}</p>
       <span class="toggle-switch"></span>
       <p class="toggle-yes">{{ yes }}</p>
@@ -26,6 +32,19 @@
       yes: {
         type: String,
         default: "Oui",
+      },
+      checked: {
+        type: Boolean,
+      }
+    },
+    computed: {
+      inputVal: {
+        get() {
+          return this.checked;
+        },
+        set(val) {
+          this.$emit('updateToggle', val);
+        }
       }
     }
   }
