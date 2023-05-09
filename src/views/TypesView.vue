@@ -2,6 +2,9 @@
   <div class="container">
     <h1>Les types</h1>
     <p>C’est ici que vous pouvez ajouter, modifier ou supprimer des types.</p>
+    <a :href="this.$route.path + '/add'" class="button">
+      Ajouter un type
+    </a>
     <TableComponent
       :head="arrayHead"
       :body="arrayBody"
@@ -13,12 +16,14 @@
   export default {
     data() {
       return {
-        arrayHead: ['Type'],
-        arrayBody: [
-          ['Halo'],
-          ['Chaos'],
-        ]
+        arrayHead: [{ title: 'Type', prop: 'name' }],
+        arrayBody: {}
       }
+    },
+    async beforeMount() {
+      let data = await fetch('http://localhost:3000/types')
+        .then(response => response.json());
+      this.arrayBody = [...data];
     }
   }
 </script>
@@ -29,5 +34,29 @@
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+
+    .button {
+      background-color: var(--blue);
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: darken(#1400FF, 15%);
+      }
+
+      &:disabled {
+        opacity: .5;
+      }
+    }
   }
 </style>
