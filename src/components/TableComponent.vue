@@ -3,21 +3,21 @@
     <table>
       <thead>
         <tr>
-          <th v-for="(el, i) in head" :key="i">{{ el }}</th>
+          <th v-for="(el, i) in head" :key="i">{{ el.title  }}</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="(items, index) in body"
-          :key="index"
-          @click="navigate(index)"
+          v-for="item in body"
+          :key="item.id"
+          @click="navigate(item.id)"
         >
           <td
-            v-for="(item, ind) in items"
+            v-for="(property, ind) in head"
             :key="ind"
-            :data-label="head[ind]"
+            :data-label="property.title"
           >
-            {{ item }}
+            {{ item[property.prop] }}
           </td>
         </tr>
       </tbody>
@@ -32,14 +32,14 @@
         type: Array,
       },
       body: {
-        type: Array,
+        type: Object,
       }
     },
     methods: {
       navigate(index) {
         document.location = this.$route.path + '/' + index;
       }
-    }
+    },
   }
 </script>
 
