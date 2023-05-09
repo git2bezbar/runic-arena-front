@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import CardsView from '../views/CardsView.vue'
 import CardView from '../views/CardView.vue'
 import CardUpsert from '../views/CardUpsert.vue'
@@ -11,6 +10,7 @@ import SkillView from '../views/SkillView.vue'
 import SkillUpsert from '../views/SkillUpsert.vue'
 import ClassesView from '../views/ClassesView.vue'
 import ClassView from '../views/ClassView.vue'
+import ClassAdd from '../views/ClassAdd.vue'
 import ClassUpsert from '../views/ClassUpsert.vue'
 import TypesView from '../views/TypesView.vue'
 import TypeView from '../views/TypeView.vue'
@@ -83,6 +83,11 @@ const router = createRouter({
       path: '/classes/:id/edit',
       name: 'class-edit',
       component: ClassUpsert
+    },
+    {
+      path: '/classes/add',
+      name: 'class-add',
+      component: ClassAdd
     },
     {
       path: '/types',
