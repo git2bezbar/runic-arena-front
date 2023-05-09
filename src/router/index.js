@@ -8,6 +8,7 @@ import AbilityUpsert from '../views/AbilityUpsert.vue'
 import SkillsView from '../views/SkillsView.vue'
 import SkillView from '../views/SkillView.vue'
 import SkillUpsert from '../views/SkillUpsert.vue'
+import SkillAdd from '../views/SkillAdd.vue'
 import ClassesView from '../views/ClassesView.vue'
 import ClassView from '../views/ClassView.vue'
 import ClassAdd from '../views/ClassAdd.vue'
@@ -68,6 +69,11 @@ const router = createRouter({
       path: '/skills/:id/edit',
       name: 'skill-edit',
       component: SkillUpsert
+    },
+    {
+      path: '/skills/add',
+      name: 'skill-add',
+      component: SkillAdd
     },
     {
       path: '/classes',

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Modification de compétence</h1>
+    <h1>Ajout de compétence</h1>
     <InputComponent
       name="name"
       label="Nom"
@@ -22,8 +22,8 @@
       @updateToggle="setIsPercentage"
     />
 
-    <button class="button" :disabled="!hasChanged" @click="updateQuery">
-      Sauvegarder les changements
+    <button class="button" :disabled="!isEmpty" @click="addQuery">
+      Ajouter la compétence
     </button>
   </div>
 </template>
@@ -36,17 +36,12 @@
     },
     data() {
       return {
-        skill: {
-          name: '',
-          desc: '',
-          isPercentage: null,
-        },
         newSkill: {
           name: '',
           desc: '',
-          isPercentage: null,
+          isPercentage: false,
         },
-        hasChanged: false,
+        isEmpty: false,
       }
     },
     methods:{
@@ -59,21 +54,19 @@
       setIsPercentage(val) {
         this.newSkill.isPercentage = val;
       },
-      async updateQuery() {
-
+      async addQuery() {
         const newSkillObject = {
           name: this.newSkill.name,
           description: this.newSkill.desc,
-          isPercentage: this.newSkill.isPercentage,
         };
         const requestOptions = {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newSkillObject),
         };
-        this.hasChanged = false;
+        this.isEmpty = false;
         await fetch(
-          'http://localhost:3000/skills/' + this.$route.params.id,
+          'http://localhost:3000/skills/',
           requestOptions
         ).then(response => {
           return response.json();
@@ -85,17 +78,8 @@
         document.location = newURL;
       }
     },
-    async beforeMount() {
-      let data = await fetch('http://localhost:3000/skills/' + this.$route.params.id)
-        .then(response => response.json());
-      this.skill = { name: data.name, desc : data.description, isPercentage: data.isPercentage };
-      this.newSkill = { name: data.name, desc : data.description, isPercentage: data.isPercentage };
-    },
     updated() {
-      this.hasChanged = 
-        (this.newSkill.name.trim() !== this.skill.name.trim() ||
-          this.newSkill.desc.trim() !== this.skill.desc.trim() ||
-          this.newSkill.isPercentage !== this.skill.isPercentage); 
+      this.isEmpty = this.newSkill.name.trim().length; 
     }
   }
 </script>
