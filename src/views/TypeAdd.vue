@@ -16,8 +16,8 @@
       @updateTextarea="setDesc"
     />
 
-    <button class="button" :disabled="!hasChanged" @click="updateQuery">
-      Sauvegarder les changements
+    <button class="button" :disabled="!isEmpty" @click="addQuery">
+      Ajouter le type
     </button>
   </div>
 </template>
@@ -30,15 +30,11 @@
     },
     data() {
       return {
-        type: {
-          name: '',
-          desc: '',
-        },
         newType: {
           name: '',
           desc: '',
         },
-        hasChanged: false,
+        isEmpty: false,
       }
     },
     methods:{
@@ -48,20 +44,20 @@
       setName(val) {
         this.newType.name = val;
       },
-      async updateQuery() {
+      async addQuery() {
 
         const newTypeObject = {
           name: this.newType.name,
           description: this.newType.desc,
         };
         const requestOptions = {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newTypeObject),
         };
-        this.hasChanged = false;
+        this.isEmpty = false;
         await fetch(
-          'http://localhost:3000/types/' + this.$route.params.id,
+          'http://localhost:3000/types/',
           requestOptions
         ).then(response => {
           return response.json();
@@ -73,16 +69,8 @@
         document.location = newURL;
       }
     },
-    async beforeMount() {
-      let data = await fetch('http://localhost:3000/types/' + this.$route.params.id)
-        .then(response => response.json());
-      this.type = { name: data.name, desc : data.description };
-      this.newType = { name: data.name, desc : data.description };
-    },
     updated() {
-      this.hasChanged = 
-        (this.newType.name.trim() !== this.type.name.trim() ||
-          this.newType.desc.trim() !== this.type.desc.trim()); 
+      this.isEmpty = this.newType.name.trim().length; 
     }
   }
 </script>

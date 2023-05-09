@@ -15,6 +15,7 @@ import ClassUpsert from '../views/ClassUpsert.vue'
 import TypesView from '../views/TypesView.vue'
 import TypeView from '../views/TypeView.vue'
 import TypeUpsert from '../views/TypeUpsert.vue'
+import TypeAdd from '../views/TypeAdd.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -97,6 +98,11 @@ const router = createRouter({
       path: '/types/:id/edit',
       name: 'type-edit',
       component: TypeUpsert
+    },
+    {
+      path: '/types/add',
+      name: 'type-add',
+      component: TypeAdd
     },
   ]
 })
