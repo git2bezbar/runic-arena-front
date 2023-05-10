@@ -17,7 +17,7 @@
             :key="ind"
             :data-label="property.title"
           >
-            {{ item[property.prop] }}
+            {{ `${item[property.prop]}${(item.isPercentage && property.prop === 'amount') ? ' %': '' }` }}
           </td>
         </tr>
       </tbody>

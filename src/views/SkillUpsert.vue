@@ -22,7 +22,7 @@
       @updateToggle="setIsPercentage"
     />
 
-    <button class="button" :disabled="!hasChanged" @click="updateQuery">
+    <button class="button" :disabled="!hasChanged || isEmpty" @click="updateQuery">
       Sauvegarder les changements
     </button>
   </div>
@@ -47,6 +47,7 @@
           isPercentage: null,
         },
         hasChanged: false,
+        isEmpty: false,
       }
     },
     methods:{
@@ -95,7 +96,8 @@
       this.hasChanged = 
         (this.newSkill.name.trim() !== this.skill.name.trim() ||
           this.newSkill.desc.trim() !== this.skill.desc.trim() ||
-          this.newSkill.isPercentage !== this.skill.isPercentage); 
+          this.newSkill.isPercentage !== this.skill.isPercentage);
+      this.isEmpty = !this.newSkill.name.trim().length;
     }
   }
 </script>

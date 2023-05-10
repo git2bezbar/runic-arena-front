@@ -22,7 +22,7 @@
       @updateToggle="setIsPercentage"
     />
 
-    <button class="button" :disabled="!isEmpty" @click="addQuery">
+    <button class="button" :disabled="isEmpty" @click="addQuery">
       Ajouter la compétence
     </button>
   </div>
@@ -41,7 +41,7 @@
           desc: '',
           isPercentage: false,
         },
-        isEmpty: false,
+        isEmpty: true,
       }
     },
     methods:{
@@ -79,7 +79,7 @@
       }
     },
     updated() {
-      this.isEmpty = this.newSkill.name.trim().length; 
+      this.isEmpty = !this.newSkill.name.trim().length; 
     }
   }
 </script>

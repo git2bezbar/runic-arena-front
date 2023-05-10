@@ -29,97 +29,116 @@ const router = createRouter({
     {
       path: '/cards',
       name: 'cards',
-      component: CardsView
+      component: CardsView,
+      meta: { title: 'Cartes' },
     },
     {
       path: '/cards/:id',
       name: 'card',
-      component: CardView
+      component: CardView,
+      meta: { title: 'Carte' },
     },
     {
       path: '/cards/:id/edit',
       name: 'card-edit',
-      component: CardUpsert
+      component: CardUpsert,
+      meta: { title: 'Modification de carte' },
     },
     {
       path: '/abilities',
       name: 'abilities',
-      component: AbilitiesView
+      component: AbilitiesView,
+      meta: { title: 'Capacités' },
     },
     {
       path: '/abilities/:id',
       name: 'ability',
-      component: AbilityView
+      component: AbilityView,
+      meta: { title: 'Capacité' },
     },
     {
       path: '/abilities/:id/edit',
       name: 'ability-edit',
-      component: AbilityUpsert
+      component: AbilityUpsert,
+      meta: { title: 'Modification de capacité' },
     },
     {
       path: '/abilities/add',
       name: 'ability-add',
-      component: AbilityAdd
+      component: AbilityAdd,
+      meta: { title: 'Ajout de capacité' },
     },
     {
       path: '/skills',
       name: 'skills',
-      component: SkillsView
+      component: SkillsView,
+      meta: { title: 'Compétences' },
     },
     {
       path: '/skills/:id',
       name: 'skill',
-      component: SkillView
+      component: SkillView,
+      meta: { title: 'Compétence' },
     },
     {
       path: '/skills/:id/edit',
       name: 'skill-edit',
-      component: SkillUpsert
+      component: SkillUpsert,
+      meta: { title: 'Modification de compétence' },
     },
     {
       path: '/skills/add',
       name: 'skill-add',
-      component: SkillAdd
+      component: SkillAdd,
+      meta: { title: 'Ajout de compétence' },
     },
     {
       path: '/classes',
       name: 'classes',
-      component: ClassesView
+      component: ClassesView,
+      meta: { title: 'Classes' },
     },
     {
       path: '/classes/:id',
       name: 'class',
-      component: ClassView
+      component: ClassView,
+      meta: { title: 'Classe' },
     },
     {
       path: '/classes/:id/edit',
       name: 'class-edit',
-      component: ClassUpsert
+      component: ClassUpsert,
+      meta: { title: 'Modification de classe' },
     },
     {
       path: '/classes/add',
       name: 'class-add',
-      component: ClassAdd
+      component: ClassAdd,
+      meta: { title: 'Ajout de classe' },
     },
     {
       path: '/types',
       name: 'types',
-      component: TypesView
+      component: TypesView,
+      meta: { title: 'Types' },
     },
     {
       path: '/types/:id',
       name: 'type',
-      component: TypeView
+      component: TypeView,
+      meta: { title: 'Type' },
     },
     {
       path: '/types/:id/edit',
       name: 'type-edit',
-      component: TypeUpsert
+      component: TypeUpsert,
+      meta: { title: 'Modification de type' },
     },
     {
       path: '/types/add',
       name: 'type-add',
-      component: TypeAdd
+      component: TypeAdd,
+      meta: { title: 'Ajout de type' },
     },
   ]
 })

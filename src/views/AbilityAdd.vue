@@ -32,7 +32,7 @@
       @updateInput="setAmount"
     />
 
-    <button class="button" :disabled="!isEmpty" @click="addQuery">
+    <button class="button" :disabled="isEmpty" @click="addQuery">
       Ajouter la capacité
     </button>
   </div>
@@ -46,11 +46,11 @@
         skillList: {},
         newAbility: {
           name: '',
-          amount: '',
+          amount: null,
           skillId: null,
         },
         skillDesc: '',
-        isEmpty: false,
+        isEmpty: true,
       }
     },
     methods:{
@@ -64,7 +64,6 @@
         this.newAbility.skillId = val;
         const indexOfSkill = this.skillList.findIndex(skill => skill.id === this.newAbility.skillId);
         this.skillDesc = this.skillList[indexOfSkill]?.description;
-        console.log(this.skillDesc);
       },
       async addQuery() {
         const newAbilityObject = {
@@ -96,12 +95,11 @@
         .then(response => response.json())
         .then((json) => {
           this.skillList = [...json];
-          console.log(this.skillDesc);
         });
     },
     updated() {
-      this.isEmpty = this.newAbility.name.trim().length && 
-        !!this.newAbility.amount && !!this.newAbility.skillId; 
+      this.isEmpty = !this.newAbility.name.trim().length ||
+        !this.newAbility.amount || !this.newAbility.skillId;
     }
   }
 </script>
