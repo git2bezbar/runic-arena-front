@@ -32,7 +32,7 @@
       @updateInput="setAmount"
     />
 
-    <button class="button" :disabled="!isEmpty || isSame" @click="updateQuery">
+    <button class="button" :disabled="isEmpty || isSame" @click="updateQuery">
       Sauvegarder les changements
     </button>
   </div>
@@ -120,13 +120,12 @@
           this.skillList = [...json];
           const indexOfSkill = this.skillList.findIndex(skill => skill.id === this.newAbility.skillId);
           this.skill = this.skillList[indexOfSkill];
-          console.log(this.skill);
         });
       },
       updated() {
-        this.isEmpty = this.newAbility.name.trim().length && 
+        this.isEmpty = !this.newAbility.name.trim().length && 
           !!this.newAbility.amount && !!this.newAbility.skillId;
-        this.isSame = this.newAbility.name === this.ability.name &&
+        this.isSame = this.newAbility.name.trim() === this.ability.name.trim() &&
           this.newAbility.amount === this.ability.amount &&
           this.newAbility.skillId === this.ability.skillId;
       }

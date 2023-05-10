@@ -16,7 +16,7 @@
       @updateTextarea="setDesc"
     />
 
-    <button class="button" :disabled="!isEmpty" @click="addQuery">
+    <button class="button" :disabled="isEmpty" @click="addQuery">
       Ajouter la classe
     </button>
   </div>
@@ -30,7 +30,7 @@
           name: '',
           desc: '',
         },
-        isEmpty: false,
+        isEmpty: true,
       }
     },
     methods:{
@@ -66,7 +66,7 @@
       }
     },
     updated() {
-      this.isEmpty = this.newClass.name.trim().length; 
+      this.isEmpty = !this.newClass.name.trim().length; 
     }
   }
 </script>

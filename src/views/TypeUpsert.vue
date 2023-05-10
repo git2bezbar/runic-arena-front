@@ -14,10 +14,9 @@
       placeholder="La description de votre type"
       :value="newType.desc"
       @updateTextarea="setDesc"
-      disabled
     />
 
-    <button class="button" :disabled="!hasChanged" @click="updateQuery">
+    <button class="button" :disabled="!hasChanged || isEmpty" @click="updateQuery">
       Sauvegarder les changements
     </button>
   </div>
@@ -37,6 +36,7 @@
           desc: '',
         },
         hasChanged: false,
+        isEmpty: false,
       }
     },
     methods:{
@@ -80,7 +80,8 @@
     updated() {
       this.hasChanged = 
         (this.newType.name.trim() !== this.type.name.trim() ||
-          this.newType.desc.trim() !== this.type.desc.trim()); 
+          this.newType.desc.trim() !== this.type.desc.trim());
+      this.isEmpty = !this.newType.name.trim().length;
     }
   }
 </script>
