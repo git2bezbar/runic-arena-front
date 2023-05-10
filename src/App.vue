@@ -7,6 +7,14 @@
       RouterView, 
       NavbarComponent,
     },
+    watch: {
+      $route: {
+        immediate: true,
+        handler(to, from) {
+          document.title = `Runic Arena | ${to.meta.title}`;
+        }
+      },
+    }
   }
 </script>
 
