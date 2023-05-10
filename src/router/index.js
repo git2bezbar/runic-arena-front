@@ -5,6 +5,7 @@ import CardUpsert from '../views/CardUpsert.vue'
 import AbilitiesView from '../views/AbilitiesView.vue'
 import AbilityView from '../views/AbilityView.vue'
 import AbilityUpsert from '../views/AbilityUpsert.vue'
+import AbilityAdd from '../views/AbilityAdd.vue'
 import SkillsView from '../views/SkillsView.vue'
 import SkillView from '../views/SkillView.vue'
 import SkillUpsert from '../views/SkillUpsert.vue'
@@ -54,6 +55,11 @@ const router = createRouter({
       path: '/abilities/:id/edit',
       name: 'ability-edit',
       component: AbilityUpsert
+    },
+    {
+      path: '/abilities/add',
+      name: 'ability-add',
+      component: AbilityAdd
     },
     {
       path: '/skills',

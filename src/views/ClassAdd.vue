@@ -23,11 +23,7 @@
 </template>
 
 <script>
-  import TextAreaComponent from '../components/TextAreaComponent.vue';
   export default {
-    components: {
-      TextAreaComponent,
-    },
     data() {
       return {
         newClass: {

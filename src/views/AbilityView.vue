@@ -6,7 +6,7 @@
       <div class="card-info">
         <header>
           <div class="card-titles">
-            <h2>Camouflage</h2>
+            <h2>{{ ability.name }}</h2>
             <p>en détails</p>
           </div>
           <div class="card-buttons">
@@ -14,21 +14,21 @@
               Modifier
               <EditIcon />
             </a>
-            <a :href="this.$route.path + '/delete'" class="button">
+            <button class="button"  @click="deleteQuery">
               Supprimer
               <DeleteIcon />
-            </a>
+            </button>
           </div>
         </header>
         <div class="card-items">
           <CardItem
-            icon="StopIcon"
-            title="Esquive"
-            unit="Esquive les X prochaines attaques"
+            icon="SkillIcon"
+            :title="skill.name"
+            :unit="skill.description"
           />
           <CardItem
             icon="QuantityIcon"
-            title="1"
+            :title="ability.amount"
             unit="Quantité"
           />
         </div>
@@ -39,7 +39,50 @@
 
 <script>
   export default {
-    
+    data() {
+      return {
+        ability: {
+          name: '',
+          amount: '',
+          skillId: null,
+        },
+        skill: '',
+      }
+    },
+    async beforeMount() {
+      await fetch('http://localhost:3000/abilities/' + this.$route.params.id)
+        .then(response => response.json())
+        .then(async json => {
+          this.ability.name = json.name;
+          this.ability.amount = json.amount;
+          this.ability.skillId = json.skillId;
+      });
+
+      await fetch('http://localhost:3000/skills/' + this.ability.skillId)
+        .then(response => response.json())
+        .then(json => {
+          this.skill = json;
+        });
+    },  
+    methods: {
+      async deleteQuery() {
+        const requestOptions = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+        await fetch(
+          'http://localhost:3000/abilities/' + this.$route.params.id,
+          requestOptions
+        ).then(response => {
+          return response.json();
+        });
+
+        let newURL = location.href.split('/');
+        newURL.pop();
+        newURL = newURL.join('/');
+        document.location = newURL;
+      }
+    },
   }
 </script>
 
@@ -106,6 +149,7 @@
       &-items {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 32px;
 
         .card-item {
@@ -123,6 +167,9 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        font-family: 'Raleway', sans-serif;
+        border: none;
+        font-size: 16px;
         transition: 0.3s;
 
         &:hover {

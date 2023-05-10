@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Modification de type</h1>
+    <h1>Ajout de type</h1>
     <InputComponent
       name="name"
       label="Nom"
@@ -23,11 +23,7 @@
 </template>
 
 <script>
-  import TextAreaComponent from '../components/TextAreaComponent.vue';
   export default {
-    components: {
-      TextAreaComponent,
-    },
     data() {
       return {
         newType: {

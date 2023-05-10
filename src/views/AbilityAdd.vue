@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Modification de capacité</h1>
+    <h1>Ajout de capacité</h1>
     <InputComponent
       name="name"
       label="Nom"
@@ -11,9 +11,9 @@
     <ListComponent
       name="type"
       label="Type"
-      placeholder="Type de capacité de votre carte"
+      placeholder="Type de votre carte"
       :list="skillList"
-      :value="skill.id"
+      value="placeholder"
       @updateList="setSkillId"
     />
     <TextAreaComponent
@@ -21,10 +21,10 @@
       label="Description"
       placeholder="Description de votre carte"
       disabled
-      :value="skill.description"
+      :value="skillDesc"
     />
     <InputComponent
-      name="quantity"
+      name="amount"
       label="Quantité"
       placeholder="Quantité de votre capacité"
       type="number"
@@ -32,13 +32,14 @@
       @updateInput="setAmount"
     />
 
-    <button class="button" :disabled="!isEmpty || isSame" @click="updateQuery">
-      Sauvegarder les changements
+    <button class="button" :disabled="!isEmpty" @click="addQuery">
+      Ajouter la capacité
     </button>
   </div>
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -48,47 +49,37 @@
           amount: '',
           skillId: null,
         },
-        ability: {
-          name: '',
-          amount: '',
-          skillId: null,
-        },
-        skill: {
-          type: String,
-        },
+        skillDesc: '',
         isEmpty: false,
-        isSame: true,
       }
     },
-    methods: {
+    methods:{
       setName(val) {
         this.newAbility.name = val;
-        this.isSame = false;
       },
       setAmount(val) {
         this.newAbility.amount = val;
-        this.isSame = false;
       },
       setSkillId(val) {
         this.newAbility.skillId = val;
-        this.isSame = false;
         const indexOfSkill = this.skillList.findIndex(skill => skill.id === this.newAbility.skillId);
-        this.skill = this.skillList[indexOfSkill];
+        this.skillDesc = this.skillList[indexOfSkill]?.description;
+        console.log(this.skillDesc);
       },
-      async updateQuery() {
+      async addQuery() {
         const newAbilityObject = {
           name: this.newAbility.name,
           amount: this.newAbility.amount,
           skillId: this.newAbility.skillId,
         };
         const requestOptions = {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newAbilityObject),
         };
         this.isEmpty = false;
         await fetch(
-          'http://localhost:3000/abilities/' + this.$route.params.id,
+          'http://localhost:3000/abilities/',
           requestOptions
         ).then(response => {
           return response.json();
@@ -98,38 +89,20 @@
         newURL.pop();
         newURL = newURL.join('/');
         document.location = newURL;
-      },
+      }
     },
     async beforeMount() {
-        await fetch('http://localhost:3000/abilities/' + this.$route.params.id)
+      await fetch('http://localhost:3000/skills')
         .then(response => response.json())
-        .then(async json => {
-          this.ability.name = json.name;
-          this.ability.amount = json.amount;
-          this.ability.skillId = json.skillId;
-
-          this.newAbility.name = json.name;
-          this.newAbility.amount = json.amount;
-          this.newAbility.skillId = json.skillId;
-
-      });
-
-      await fetch('http://localhost:3000/skills/')
-        .then(response => response.json())
-        .then(json => {
+        .then((json) => {
           this.skillList = [...json];
-          const indexOfSkill = this.skillList.findIndex(skill => skill.id === this.newAbility.skillId);
-          this.skill = this.skillList[indexOfSkill];
-          console.log(this.skill);
+          console.log(this.skillDesc);
         });
-      },
-      updated() {
-        this.isEmpty = this.newAbility.name.trim().length && 
-          !!this.newAbility.amount && !!this.newAbility.skillId;
-        this.isSame = this.newAbility.name === this.ability.name &&
-          this.newAbility.amount === this.ability.amount &&
-          this.newAbility.skillId === this.ability.skillId;
-      }
+    },
+    updated() {
+      this.isEmpty = this.newAbility.name.trim().length && 
+        !!this.newAbility.amount && !!this.newAbility.skillId; 
+    }
   }
 </script>
 

@@ -53,10 +53,6 @@
       &:hover {
         background-color: darken(#1400FF, 15%);
       }
-
-      &:disabled {
-        opacity: .5;
-      }
     }
   }
 </style>

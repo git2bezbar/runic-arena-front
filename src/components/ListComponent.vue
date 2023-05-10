@@ -8,15 +8,16 @@
       <select 
         :name="name"
         :id="name"
+        v-model="selectVal"
       >
-        <option value="" disabled selected>{{placeholder}}</option>
+        <option value="placeholder" disabled selected>{{placeholder}}</option>
         <option
-          v-for="(element, index) in list"
-          :key="index"
-          :value="element.value"
-          :selected="element.value === value"
+          v-for="element in list"
+          :key="element.id"
+          :value="element.id"
+          :selected="element.id === value"
         >
-          {{ element.title }}
+          {{ element.name }}
         </option>
       </select>
       <ArrowIcon class="list-icon"/>
@@ -37,12 +38,22 @@
         type: String,
       },
       list: {
-        type: Array,
+        type: Object,
       },
       value: {
-        type: String,
+        type: [Number, String],
       }
     },
+    computed: {
+      selectVal: {
+        get() {
+          return this.value;
+        },
+        set(val) {
+          this.$emit('updateList', val);
+        }
+      }
+    }
   }
 </script>
 

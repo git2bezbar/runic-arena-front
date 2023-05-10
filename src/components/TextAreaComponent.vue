@@ -1,5 +1,5 @@
 <template>
-  <div class="input">
+  <div class="input" :class="disabled && 'disabled'">
     <div class="input-label">{{label}}</div>
     <textarea
       :id="name"
@@ -7,6 +7,7 @@
       :rows="rows"
       :cols="cols"
       :placeholder="placeholder"
+      :disabled="disabled"
       v-model="inputVal"
     />
   </div>
@@ -36,6 +37,9 @@
         type: String,
         default: ''
       },
+      disabled: {
+        type: Boolean,
+      },
     },
     computed: {
       inputVal: {
@@ -56,6 +60,11 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
     &-label {
       font-weight: 800;
