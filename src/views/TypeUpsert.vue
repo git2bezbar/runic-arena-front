@@ -14,6 +14,7 @@
       placeholder="La description de votre type"
       :value="newType.desc"
       @updateTextarea="setDesc"
+      disabled
     />
 
     <button class="button" :disabled="!hasChanged" @click="updateQuery">
@@ -23,11 +24,8 @@
 </template>
 
 <script>
-  import TextAreaComponent from '../components/TextAreaComponent.vue';
   export default {
-    components: {
-      TextAreaComponent,
-    },
+
     data() {
       return {
         type: {

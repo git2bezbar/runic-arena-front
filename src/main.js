@@ -20,6 +20,7 @@ import DescIcon from './components/icons/DescIcon.vue'
 import InputComponent from './components/InputComponent.vue'
 import ListComponent from './components/ListComponent.vue'
 import TableComponent from './components/TableComponent.vue'
+import TextAreaComponent from './components/TextAreaComponent.vue'
 import router from './router'
 
 import './assets/main.css'
@@ -48,4 +49,5 @@ app
   .component('InputComponent', InputComponent)
   .component('ListComponent', ListComponent)
   .component('TableComponent', TableComponent)
+  .component('TextAreaComponent', TextAreaComponent)
   .mount('#app')
