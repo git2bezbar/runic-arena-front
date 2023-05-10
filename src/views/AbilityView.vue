@@ -46,7 +46,7 @@
           amount: '',
           skillId: null,
         },
-        skill: '',
+        skill: {},
       }
     },
     async beforeMount() {

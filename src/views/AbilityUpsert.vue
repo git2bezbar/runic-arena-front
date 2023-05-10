@@ -53,9 +53,7 @@
           amount: '',
           skillId: null,
         },
-        skill: {
-          type: String,
-        },
+        skill: {},
         isEmpty: false,
         isSame: true,
       }
