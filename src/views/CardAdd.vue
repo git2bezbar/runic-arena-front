@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <h1>Modification de carte</h1>
+    <h1>Ajout de carte</h1>
     <button class="button" @click="generateName">Générer un nom</button>
     <InputComponent
-      icon="ShuffleIcon"
       name="name"
       label="Nom"
       placeholder="Nom de votre carte"
@@ -11,21 +10,17 @@
       @updateInput="setName"
     />
     <InputComponent
-      icon="ShuffleIcon"
       name="surname"
       label="Surnom"
       placeholder="Surnom de votre carte"
       :value="cardData.surname"
       @updateInput="setSurname"
     />
-    <form method="post" enctype="multipart/form-data">
-      <InputComponent
+    <InputComponent
       name="image"
       label="Image"
       type="file"
-      @updateInput="setImage"
-      />
-    </form>
+    />
     <ListComponent
       name="type"
       label="Type"
@@ -50,47 +45,32 @@
       :value="cardData.power"
       @updateInput="setPower"
     />
-    <ActiveAbilitiesComponent
-      label="Capacité(s) active(s)"
-      :actives="cardData.actives"
-    />
-    <PassiveAbilityComponent
-      label="Capacité passive"
-      :selectedAbility="cardData.passive.abilityId"
-      :selectedCondition="cardData.passive.conditionId"
-      @updateSelectedCondition="setSelectedCondition"
-      @updateSelectedAbility="setSelectedAbility"
-    />
 
-    <button class="button" @click="updateQuery">
+    <button class="button" @click="addQuery">
       Sauvegarder les changements
     </button>
   </div>
 </template>
 
 <script>
-  import ActiveAbilitiesComponent from '../components/ActiveAbilitiesComponent.vue'
-  import PassiveAbilityComponent from '../components/PassiveAbilityComponent.vue';
 
   export default {
     data() {
       return {
         typeArray: '',
         classArray: '',
-        cardData: '',
+        cardData: {
+          name: '',
+          surname: '',
+          typeId: 'placeholder',
+          classId: 'placeholder',
+          power: '',
+        },
         isEmpty: false,
         isSame: true,
       }
     },
-    components: {
-      ActiveAbilitiesComponent,
-      PassiveAbilityComponent,
-    },
     async beforeMount() {
-      let data = await fetch('http://localhost:3000/cards/' + this.$route.params.id)
-        .then(response => response.json());
-      this.cardData = data;
-
       let types = await fetch('http://localhost:3000/types')
         .then(response => response.json());
       this.typeArray = types;
@@ -100,7 +80,7 @@
       this.classArray = classes;
     },
     methods: {
-      async updateQuery() {
+      async addQuery() {
         const cardDataObject = {
           name: this.cardData.name,
           surname: this.cardData.surname,
@@ -109,20 +89,18 @@
           power: this.cardData.power,
         };
         const requestOptions = {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(cardDataObject),
         };
         this.isEmpty = false;
         await fetch(
-          'http://localhost:3000/cards/' + this.$route.params.id,
+          'http://localhost:3000/cards',
           requestOptions
-        );
-
-        let newURL = location.href.split('/');
-        newURL.pop();
-        newURL = newURL.join('/');
-        document.location = newURL;
+        ).then(response => {
+          console.log(cardDataObject);
+          return response.json();
+        });
       },
       async generateName() {
         let data = await fetch('http://localhost:3000/cards/name-generator')
@@ -145,32 +123,6 @@
       },
       setPower(val) {
         this.cardData.power = val;
-      },
-      setSelectedCondition(val) {
-        this.cardData.passive.conditionId = val;
-      },
-      setSelectedAbility(val) {
-        this.cardData.passive.abilityId = val;
-      },
-      setSelectedActiveAbility(val) {
-        this.cardData.passive.abilityId = val;
-      },
-      async setImage(val) {
-        console.log(val);
-        let formData = new FormData();
-        formData.append('image', val);
-        const requestOptions = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: formData,
-        };
-        await fetch(
-          'http://localhost:3000/cards/' + this.$route.params.id + '/upload',
-          requestOptions
-        ).then(response => {
-          console.log(response);         
-          return response;
-        });
       },
     }
   }

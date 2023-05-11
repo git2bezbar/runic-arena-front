@@ -2,18 +2,14 @@
   <div class="container">
     <h1>Les cartes</h1>
     <p>C’est ici que vous pouvez ajouter, modifier ou supprimer des cartes.</p>
+    <a :href="this.$route.path + '/add'" class="button">
+      Ajouter une carte
+    </a>
     <div class="cards-container">
       <CardComponent
         v-for="(card, index) in cardData"
         :key="index"
-        :id="0"
-        :power="card.power"
-        :type="card.type"
-        :class="card.class"
-        :name="card.name"
-        :surname="card.surname"
-        :active="card.active"
-        :passive="card.passive"
+        :card="card"
       />
     </div>
   </div>
@@ -28,55 +24,15 @@
     },
     data() {
       return {
-        cardData: [
-          {
-            power: 97,
-            type: 'chaos',
-            class: 'warrior',
-            name: 'Farès',
-            surname: 'Le Banni',
-            active: 2,
-            passive: 1,
-          },
-          {
-            power: 17,
-            type: 'chaos',
-            class: 'warrior',
-            name: 'Farès',
-            surname: 'Le Chien',
-            active: 0,
-            passive: 1,
-          },
-          {
-            power: 57,
-            type: 'chaos',
-            class: 'warrior',
-            name: 'Léonard',
-            surname: 'Le Latéral',
-            active: 1,
-            passive: 1,
-          },
-          {
-            power: 0,
-            type: 'chaos',
-            class: 'warrior',
-            name: 'Béatrice',
-            surname: 'La Grosse Pute',
-            active: 0,
-            passive: 1,
-          },
-          {
-            power: 99,
-            type: 'chaos',
-            class: 'warrior',
-            name: 'Julien',
-            surname: 'Le Dev JS',
-            active: 2,
-            passive: 1,
-          },
-        ]
+        cardData: [],
       }
-    }
+    },
+    async beforeMount() {
+      let data = await fetch('http://localhost:3000/cards')
+        .then(response => response.json());
+        console.log(data);
+      this.cardData = [...data];
+    },
   }
 </script>
 
@@ -84,6 +40,7 @@
   .container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
 
     h1, p {
@@ -94,6 +51,30 @@
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
+    }
+
+    .button {
+      background-color: var(--blue);
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: darken(#1400FF, 15%);
+      }
+
+      &:disabled {
+        opacity: .5;
+      }
     }
   }
 

@@ -4,40 +4,40 @@
       <div class="card">
         <div
           class="card-img"
-          :style="'background: center center / cover url(\'../../src/assets/images/' + this.$route.params.id + '.jpg\')'"
+          :style="'background: center center / cover url(\'../../src/assets/images/0.jpg\')'"
         >
         </div>
         <div class="card-info">
           <header>
             <div class="card-titles">
-              <h2>Farès</h2>
-              <p>Le Banni</p>
+              <h2>{{ cardData.name }}</h2>
+              <p>{{ cardData.surname }}</p>
             </div>
             <div class="card-buttons">
               <a :href="this.$route.path + '/edit'" class="button">
                 Modifier
                 <EditIcon />
               </a>
-              <a :href="this.$route.path + '/delete'" class="button">
+              <button :href="this.$route.path + '/delete'" class="button" @click="deleteQuery">
                 Supprimer
                 <DeleteIcon />
-              </a>
+              </button>
             </div>
           </header>
           <div class="card-items">
             <CardItem
               icon="PowerIcon"
-              title="75"
+              :title="cardData.power"
               unit="Puissance"
             />
             <CardItem
-              icon="ChaosIcon"
-              title="Chaos"
+              icon="TypeIcon"
+              :title="cardData.typeName"
               unit="Type"
             />
             <CardItem
-              icon="WarriorIcon"
-              title="Guerrier"
+              icon="ClassIcon"
+              :title="cardData.className"
               unit="Classe"
             />
           </div>
@@ -47,15 +47,15 @@
         <div class="active">
           <h2>Capacités actives</h2>
           <div class="card-items">
+
             <CardItem
-              icon="StopIcon"
-              title="2"
-              unit="Esquive"
-            />
-            <CardItem
-              icon="HeartIcon"
-              title="20%"
-              unit="Vol de vie"
+              v-for="(active, i) in this.cardData.actives"
+              :key="i"
+              icon="AbilityIcon"
+              :title="active.active.ability.name"
+              :unit="`${active.active.ability.skill.name} 
+              ${active.active.ability.amount} 
+              ${active.active.ability.skill.isPercentage ? '%' : ''}`"
             />
           </div>
         </div>
@@ -63,20 +63,56 @@
           <h2>Capacité passive</h2>
           <div class="passive-content">
             <div class="passive-info">
-              <h3>Attaque</h3>
-              <p>Si la carte engage le duel, la compétence est déclenchée.</p>
+              <h3>{{ cardData.passive.condition.name }}</h3>
+              <p>{{ cardData.passive.condition.description }}</p>
             </div>
             <CardItem
-              isActive
-              icon="MadnessIcon"
-              title="25%"
-              unit="Folie"
+              isPassive
+              icon="AbilityIcon"
+              :title="cardData.passive.ability.name"
+              :unit="`${cardData.passive.ability.skill.name} 
+              ${cardData.passive.ability.amount} 
+              ${cardData.passive.ability.skill.isPercentage ? '%' : ''}`"
             />
           </div>
         </div>
       </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        cardData: '',
+      }
+    },
+    async beforeMount() {
+      let data = await fetch('http://localhost:3000/cards/' + this.$route.params.id)
+        .then(response => response.json());
+      this.cardData = data;
+    },
+    methods: {
+      async deleteQuery() {
+        const requestOptions = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+        await fetch(
+          'http://localhost:3000/cards/' + this.$route.params.id,
+          requestOptions
+        ).then(response => {
+          return response.json();
+        });
+
+        let newURL = location.href.split('/');
+        newURL.pop();
+        newURL = newURL.join('/');
+        document.location = newURL;
+      }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   .container {
@@ -157,6 +193,9 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        font-family: 'Raleway', sans-serif;
+        border: none;
+        font-size: 16px;
         transition: 0.3s;
 
         &:hover {

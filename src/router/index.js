@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import CardsView from '../views/CardsView.vue'
 import CardView from '../views/CardView.vue'
 import CardUpsert from '../views/CardUpsert.vue'
+import CardAdd from '../views/CardAdd.vue'
 import AbilitiesView from '../views/AbilitiesView.vue'
 import AbilityView from '../views/AbilityView.vue'
 import AbilityUpsert from '../views/AbilityUpsert.vue'
@@ -43,6 +44,12 @@ const router = createRouter({
       name: 'card-edit',
       component: CardUpsert,
       meta: { title: 'Modification de carte' },
+    },
+    {
+      path: '/cards/add',
+      name: 'card-add',
+      component: CardAdd,
+      meta: { title: 'Ajout de carte' },
     },
     {
       path: '/abilities',
