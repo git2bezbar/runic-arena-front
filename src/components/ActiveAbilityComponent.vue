@@ -4,9 +4,11 @@
     <div class="active-skill">
       <div class="active-subtitle">Compétences</div>
       <ListComponent
-        :list="abilityList"
+        :list="abilitiesList"
         placeholder="Choisissez une capacité"
         name="abilities"
+        :value="selectedAbility"
+        @updateList="setSelectedAbility"
       />
     </div>
     <div class="active-amount">
@@ -16,12 +18,13 @@
         :key="index"
         :amount="amount"
         :list="colorList"
+
         @delete="removeAmount"
       />
-      <button v-show="amounts < 2" class="button" @click="addAmount">
+      <button v-show="amounts < 2" class="button">
         Ajouter un coût
       </button>
-      <button class="button" @click="deleteAbility">
+      <button class="button">
         Supprimer la capacité
       </button>
     </div>
@@ -34,32 +37,26 @@
     props: {
       number: {
         type: Number,
+      },
+      selectedAbility: {
+        type: Number,
       }
     },
     data() {
       return {
-        abilityList: [
-          {
-            value: 'camouflage',
-            title: 'Camouflage',
-          },
-          {
-            value: 'concentration',
-            title: 'Concentration',
-          },
-        ],
+        abilitiesList: {},
         colorList: [
           {
-            value: 'rouge',
-            title: 'Rouge',
+            id: 'Rouge',
+            name: 'Rouge',
           },
           {
-            value: 'bleu',
-            title: 'Bleu',
+            id: 'Bleu',
+            name: 'Bleu',
           },
           {
-            value: 'jaune',
-            title: 'Jaune',
+            id: 'Jaune',
+            name: 'Jaune',
           },
         ],
         amounts: 0,
@@ -67,18 +64,25 @@
       }
     },
     methods: {
-      addAmount() {
-        this.amounts++;
+      setSelectedAbility(val) {
+        this.$emit('updateSelectedAbility', val);
       },
-      removeAmount() {
-        this.amounts--;
-      },
-      deleteAbility() {
-        this.$emit("delete")
-      }
     },
     components: {
       AmountComponent
+    },
+    
+    async beforeMount() {
+
+
+      let abilities = await fetch('http://localhost:3000/abilities')
+        .then(response => response.json());
+      this.abilitiesList = abilities;
+
+      let classes = await fetch('http://localhost:3000/classes')
+        .then(response => response.json());
+      this.classArray = classes;
+      
     },
   }
 </script>

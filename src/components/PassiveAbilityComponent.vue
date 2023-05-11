@@ -5,17 +5,21 @@
       <div class="passive-condition">
         <div class="passive-subtitle">Condition</div>
         <ListComponent
-          :list="conditionList"
+          :list="conditionsList"
           placeholder="Choisissez une condition"
           name="abilities"
+          :value="selectedCondition"
+          @updateList="setSelectedCondition"
         />
       </div>
       <div class="passive-ability-container">
         <div class="passive-subtitle">Compétence</div>
         <ListComponent
-          :list="abilityList"
+          :list="abilitiesList"
           placeholder="Choisissez une capacité"
           name="abilities"
+          :value="selectedAbility"
+          @updateList="setSelectedAbility"
         />
       </div>
     </div>
@@ -27,39 +31,36 @@
     props: {
       label: {
         type: String,
-      }
+      },
+      selectedCondition: {
+        type: String,
+      },
+      selectedAbility: {
+        type: String,
+      },
     },
     data() {
       return {
-        conditionList: [
-          {
-            value: 'attaque',
-            title: 'Attaque',
-          },
-          {
-            value: 'defend',
-            title: 'Défend',
-          },
-          {
-            value: 'avantage',
-            title: 'Avantage',
-          },
-          {
-            value: 'groupe',
-            title: 'Groupe',
-          },
-        ],
-        abilityList: [
-          {
-            value: 'camouflage',
-            title: 'Camouflage',
-          },
-          {
-            value: 'concentration',
-            title: 'Concentration',
-          },
-        ],
+        conditionsList: [],
+        abilitiesList: [],
       }
+    }, 
+    async beforeMount() {
+      let conditions = await fetch('http://localhost:3000/conditions')
+        .then(response => response.json());
+      this.conditionsList = conditions;
+
+      let abilities = await fetch('http://localhost:3000/abilities')
+        .then(response => response.json());
+      this.abilitiesList = abilities;
+    },
+    methods: {
+      setSelectedCondition(val) {
+        this.$emit('updateSelectedCondition', val);
+      },
+      setSelectedAbility(val) {
+        this.$emit('updateSelectedAbility', val);
+      },
     }
   }
 </script>

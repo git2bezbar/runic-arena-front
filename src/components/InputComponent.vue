@@ -32,7 +32,7 @@
   export default {
     props: {
       name: {
-        type: String,
+        type: [String, Number],
       },
       label: {
         type: String,
@@ -61,7 +61,7 @@
     },
     methods: {
       onUpload() {
-        let { target }= event;
+        let { target } = event;
         if (target.type !== 'file'){
           return;
         } else {
@@ -74,6 +74,7 @@
             reader.readAsDataURL(target.files[0])
           }
         }
+        this.$emit('uploadFile')
       }
     },
     computed: {

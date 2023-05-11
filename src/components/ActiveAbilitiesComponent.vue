@@ -2,12 +2,13 @@
   <div class="actives">
     <div class="actives-label">{{this.label}}</div>
       <ActiveAbilityComponent
-        v-for="(ability, index) in abilities"
+        v-for="(active, index) in actives"
         :key="index"
         :number="++index"
-        @delete="removeAbility"
+        :selectedAbility="active.active.abilityId"
+        @updateSelectedActiveAbility="setSelectedAbility"
       />
-      <button v-show="abilities < 2" class="button" @click="addAbility">
+      <button v-show="actives.length < 2" class="button" @click="addAbility">
         Ajouter une capacité
       </button>
   </div>
@@ -18,21 +19,11 @@
 
   export default {
     props: {
-      name: {
-        type: String,
-      },
       label: {
         type: String,
       },
-      placeholder: {
-        type: String,
-      },
-      icon: {
-        type: String,
-      },
-      type: {
-        type: String,
-        default: 'text',
+      actives: {
+        type: Object,
       }
     },
     components: {
@@ -44,12 +35,12 @@
       }
     },
     methods: {
-      addAbility() {
-        this.abilities++;
+      setSelectedAbility(val) {
+        console.log(val);
       },
-      removeAbility() {
-        this.abilities--;
-      },
+    }, 
+    updated() {
+      console.log(this.actives);
     }
   }
 </script>
