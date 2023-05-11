@@ -1,9 +1,9 @@
 <template>
-  <div class="card-item" :class="this.isActive && 'isActive'">
+  <div class="card-item" :class="this.isPassive && 'isPassive'">
     <component 
       class="card-item-icon"
       :is="this.icon"
-      :color="this.isActive ? 'FF0043' : '1400FF'"
+      :color="this.isPassive ? 'FF0043' : '1400FF'"
     />
     <div class="card-item-info">
       <h3 class="card-item-title">{{this.title}}</h3>
@@ -27,7 +27,7 @@
         type: String,
         default: 'Puissance',
       },
-       isActive: {
+       isPassive: {
         type: Boolean,
         default: false,
        }
@@ -47,7 +47,7 @@
     flex-direction: column;
     color: var(--blue);
 
-    &.isActive {
+    &.isPassive {
       background-color: #FFD1DD;
       border: 1px solid #FF00431a;
       color: var(--electric-crimson);

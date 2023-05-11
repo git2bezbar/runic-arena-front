@@ -1,27 +1,35 @@
 <template>
-  <a :href="'cards/' + this.id" class="card" :style="'background:linear-gradient(#01092E4D, #01092EFF), center center url(\'src/assets/images/'+ this.id +'.jpg\')'">
+  <a :href="'cards/' + card.id" class="card" :style="'background:linear-gradient(#01092E4D, #01092EFF), center center url(\'src/assets/images/0.jpg\')'">
     <div class="card-misc">
-      <div class="card-power">{{this.power}}</div>
+      <div class="card-power">{{ card.power }}</div>
       <div class="card-class-type">
-        <img :src="`src/assets/icons/types/${this.type}.svg`" alt="Chaos">
-        <img :src="`src/assets/icons/classes/${this.class}.svg`" alt="Warrior">
+        <ToolTipComponent>
+          <template v-slot:content>{{ card.typeName }}</template>
+          <template v-slot:icon>
+            <TypeIcon color="FFF"/>
+          </template>
+        </ToolTipComponent>
+        <ToolTipComponent>
+          <template v-slot:content>{{ card.className }}</template>
+          <template v-slot:icon>
+            <ClassIcon color="FFF" />
+          </template>
+        </ToolTipComponent>
       </div>
     </div>
     <div class="card-info">
       <div class="card-names">
-        <h2 class="card-name">{{this.name}}</h2>
-        <p class="card-surname">{{this.surname}}</p>
+        <h2 class="card-name">{{ card.name }}</h2>
+        <p class="card-surname">{{ card.surname }}</p>
       </div>
       <div class="card-abilities">
         <svg 
-          v-for="(active, index) in this.active"
+          v-for="(active, index) in card.active"
           :key="index" 
           width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0775 13.0909H5.75934L11.8048 1V7.90909H16.123L10.0775 20V13.0909Z" fill="#1400FF"/>
         </svg>
         <svg 
-          v-for="(passive, index) in this.passive"
-          :key="index" 
           width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0775 13.0909H5.75934L11.8048 1V7.90909H16.123L10.0775 20V13.0909Z" fill="#FF0043"/>
         </svg>              
@@ -31,40 +39,43 @@
 </template>
 
 <script>
+  import TypeIcon from '../components/icons/TypeIcon.vue';
+  import ClassIcon from '../components/icons/ClassIcon.vue';
+  import ToolTipComponent from '../components/ToolTipComponent.vue';
   export default {
+    components: {
+    TypeIcon,
+    ClassIcon,
+    ToolTipComponent,
+  },
     props: {
-      id: {
-        type: Number,
-        default: 0,
+      card: {
+        type: Object,
+        id: {
+          type: Number,
+        },
+        power: {
+          type: Number,
+        },
+        class: {
+          type: String,
+        },
+        name: {
+          type: String,
+        },
+        surname: {
+          type: String,
+        },
+        active: {
+          type: Number,
+        },
+        passive: {
+          type: Number,
+        }
       },
-      power: {
-        type: Number,
-        default: 0,
-      },
-      type: {
-        type: String,
-        default: 'chaos',
-      },
-      class: {
-        type: String,
-        default: 'warrior',
-      },
-      name: {
-        type: String,
-        default: 'Name',
-      },
-      surname: {
-        type: String,
-        default: 'Surname',
-      },
-      active: {
-        type: Number,
-        default: 2,
-      },
-      passive: {
-        type: Number,
-        default: 1,
-      }
+    },
+    updated() {
+      console.log(this.card);
     }
   }
 </script>
@@ -101,6 +112,7 @@
     &-class-type {
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       gap: 16px;
     }
 
