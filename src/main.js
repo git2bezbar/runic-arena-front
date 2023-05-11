@@ -16,6 +16,8 @@ import ShuffleIcon from './components/icons/ShuffleIcon.vue'
 import ArrowIcon from './components/icons/ArrowIcon.vue'
 import QuantityIcon from './components/icons/QuantityIcon.vue'
 import TitleIcon from './components/icons/TitleIcon.vue'
+import TypeIcon from './components/icons/TypeIcon.vue'
+import ClassIcon from './components/icons/ClassIcon.vue'
 import DescIcon from './components/icons/DescIcon.vue'
 import InputComponent from './components/InputComponent.vue'
 import ListComponent from './components/ListComponent.vue'
@@ -46,6 +48,8 @@ app
   .component('QuantityIcon', QuantityIcon)
   .component('TitleIcon', TitleIcon)
   .component('DescIcon', DescIcon)
+  .component('TypeIcon', TypeIcon)
+  .component('ClassIcon', ClassIcon)
   .component('InputComponent', InputComponent)
   .component('ListComponent', ListComponent)
   .component('TableComponent', TableComponent)
